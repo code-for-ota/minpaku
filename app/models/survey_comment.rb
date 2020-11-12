@@ -1,0 +1,2 @@
+class SurveyComment < ApplicationRecord
+end

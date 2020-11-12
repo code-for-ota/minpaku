@@ -1,0 +1,2 @@
+class SurveyValue < ApplicationRecord
+end

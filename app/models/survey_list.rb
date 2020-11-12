@@ -1,0 +1,2 @@
+class SurveyList < ApplicationRecord
+end
