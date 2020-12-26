@@ -10,7 +10,9 @@ gem 'rails', '~> 6.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'dotenv-rails'
 gem 'mysql2'
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+# herokuでは使えない
+
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -31,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'geocoder'
+gem 'gon'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
