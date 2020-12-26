@@ -1,24 +1,10 @@
-# README
+# minpaku
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+code for ota の民泊プロジェクトです。
 
-Things you may want to cover:
+## タスクリスト
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ページ洗い出し
+- アンケートページ開発
+- google map 埋め込み
+-
