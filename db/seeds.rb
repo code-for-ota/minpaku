@@ -19,7 +19,7 @@ survey_list = [
 ]
 SurveyList.create(survey_list)
 
-minpaku_list = {
+minpaku_list = [{
   name: '民泊A',
   longtitude: '139.73926908273415',
   latitude: '35.6293681',
@@ -27,12 +27,22 @@ minpaku_list = {
   prefecture: '東京都',
   city: '港区',
   address_details: '高輪３丁目２６−２７'
-}
+},{
+  name: '民泊B',
+  longtitude: '139.6655074',
+  latitude: '35.6257156',
+  postal_code: '108-8282',
+  prefecture: '東京都',
+  city: '目黒区',
+  address_details: '東が丘２丁目５'
+}]
 
-minpaku_a = Minpaku.create(minpaku_list)
-minpaku_a.survey_comments.create(comment: 'test')
+minpaku = Minpaku.create(minpaku_list)
+minpaku[0].survey_comments.create(comment: 'aaaaaaaaaaaaaaaaaaa')
+minpaku[1].survey_comments.create(comment: 'bbbbbbbbbbbbbbbbbbbb')
 
 survey_ids = SurveyList.all.pluck(:id)
 survey_ids.each do |id|
-  minpaku_a.survey_values.create(survey_list_id: id, value: [0, 1].sample)
+  minpaku[0].survey_values.create(survey_list_id: id, value: [0, 1].sample)
+  minpaku[1].survey_values.create(survey_list_id: id, value: [0, 1].sample)
 end
