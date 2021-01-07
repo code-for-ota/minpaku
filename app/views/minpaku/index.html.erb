@@ -1,0 +1,17 @@
+<h1>Main Page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>アンケートフォーム</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @minpaku_list.each do |minpaku| %>
+      <tr>
+        <td><%= minpaku.id %></td>
+        <td><%= link_to minpaku.name, survey_path(minpaku_id: minpaku.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
