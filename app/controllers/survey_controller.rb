@@ -5,14 +5,15 @@ class SurveyController < ApplicationController
     end
 
     def answer
-        survey = Survey.create!(minpaku_id: 1)
+        minpaku_id = params[:minpaku_id]
+        survey_list = SurveyList.all
 
-        # 要修正
-        survey_1 = SurveyValue.create!(survey_id: survey.id, value: params[:survey_1], survey_list_id: 1)
-        survey_2 = SurveyValue.create(survey_id: survey.id, value: params[:survey_2], survey_list_id: 2)
-        survey_3 = SurveyValue.create(survey_id: survey.id, value: params[:survey_3], survey_list_id: 3)
-        survey_4 = SurveyValue.create(survey_id: survey.id, value: params[:survey_4], survey_list_id: 4)
-        survey_5 = SurveyValue.create(survey_id: survey.id, value: params[:survey_5], survey_list_id: 5)
+        survey = Survey.create!(minpaku_id: minpaku_id)
+
+        survey_list.each do |survey_content|
+            id = survey_content.id
+            SurveyValue.create!(survey_id: survey.id, value: params["survey_#{id}"], survey_list_id: id)
+        end
 
         redirect_to root_path
     end
