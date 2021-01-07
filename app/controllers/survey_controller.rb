@@ -15,6 +15,8 @@ class SurveyController < ApplicationController
             SurveyValue.create!(survey_id: survey.id, value: params["survey_#{id}"], survey_list_id: id)
         end
 
+        SurveyComment.create(survey_id: survey.id, comment: params[:survey_comment])
+
         redirect_to root_path
     end
 end
