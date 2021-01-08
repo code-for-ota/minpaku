@@ -1,3 +1,7 @@
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap">
+</script>
+
 <h1>Main Page</h1>
 <table>
   <thead>
@@ -8,10 +12,46 @@
   </thead>
   <tbody>
     <% @minpaku_list.each do |minpaku| %>
-      <tr>
-        <td><%= minpaku.id %></td>
-        <td><%= link_to minpaku.name, survey_path(minpaku_id: minpaku.id) %></td>
-      </tr>
+    <tr>
+      <td><%= minpaku.id %></td>
+      <td><%= link_to minpaku.name, survey_path(minpaku_id: minpaku.id) %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
+
+<div id="map"></div>
+
+<script>
+  function initMap() {
+    var latlng = new google.maps.LatLng(gon.minpaku_all[0].latitude, gon.minpaku_all[0].longtitude); //中心の緯度, 経度
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14, //ズームの調整
+      center: latlng //上で設定した中心
+    });
+
+    var markers = [];
+    var info_windows = [];
+
+    for (var i = 0; i < gon.minpaku_all.length; i++) {
+      markers[i] = new google.maps.Marker({
+        position: new google.maps.LatLng(gon.minpaku_all[i].latitude, gon.minpaku_all[i].longtitude),
+        map: map
+      });
+
+      var html = `test ` + gon.minpaku_all[i].name + ' OK';
+
+      info_windows[i] = new google.maps.InfoWindow({
+        content: html
+      });
+
+      google.maps.event.addListener(markers[i], 'click', (function (i) {
+        return function () {
+          info_windows[i].open(map, markers[i]);
+        };
+      })(i));
+
+    }
+
+  }
+</script>
