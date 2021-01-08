@@ -22,6 +22,7 @@
 
 <div id="map"></div>
 
+
 <script>
   function initMap() {
     var latlng = new google.maps.LatLng(gon.minpaku_all[0].latitude, gon.minpaku_all[0].longtitude); //中心の緯度, 経度
@@ -39,7 +40,32 @@
         map: map
       });
 
-      var html = `test ` + gon.minpaku_all[i].name + ' OK';
+      var html = `<div class="modal">
+
+                    <div class="minpaku_name_area">
+                      <div class="home_icon_modal">
+                        <img src="/assets/main/modal/home_icon_modal.png" widtth="40" height="40">
+                      </div>
+                      <div class="minpaku_name">
+                      ` + gon.minpaku_all[i].name + `
+                      </div>
+                    </div>
+
+                    <div class="minpaku_location_area">
+                      <div class="address_modal">
+                        <img src="/assets/main/modal/address_modal.png" widtth="30" height="30">
+                      </div>
+                      <div class = "address_area">
+                        <div class ="postal_code">
+                        〒 ` + gon.minpaku_all[i].postal_code + `
+                        </div>
+                        <div class="address_full">
+                        ` + gon.minpaku_all[i].prefecture + gon.minpaku_all[i].city + gon.minpaku_all[i]
+        .address_details + `
+                        </div>
+                      </div>
+                    </div>
+                  </div>`;
 
       info_windows[i] = new google.maps.InfoWindow({
         content: html
