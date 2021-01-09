@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   get 'survey' => 'survey#index'
   post 'survey/answer' => 'survey#answer'
+  get 'get_aggregate_values/:id' => 'minpaku#get_aggregate_values'
 end

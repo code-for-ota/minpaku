@@ -65,6 +65,10 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="aggregate_values" id="minpaku_id_` + gon.minpaku_all[i].id + `">
+                    </div>
+
                   </div>`;
 
       info_windows[i] = new google.maps.InfoWindow({
@@ -74,9 +78,32 @@
       google.maps.event.addListener(markers[i], 'click', (function (i) {
         return function () {
           info_windows[i].open(map, markers[i]);
+          add_aggregate_values_dom(gon.minpaku_all[i].id)
         };
       })(i));
 
+      function add_aggregate_values_dom(id) {
+        var request = new XMLHttpRequest();
+        request.open('GET', "/get_aggregate_values/" + id, true);
+        request.onload = function () {
+          insert_target = document.getElementById("minpaku_id_" + id);
+          insert_target.innerHTML = radar_chart_html_builder(this.response);
+        }
+        request.send()
+      }
+
+      function radar_chart_html_builder(response) {
+        var html = "";
+        var aggregate_values = JSON.parse(response)
+        aggregate_values.forEach(aggregate_value => {
+          html += `
+            <div>` +
+            aggregate_value.survey_name + ` : ` + aggregate_value.average + `
+            </div>
+            `;
+        });
+        return html;
+      }
     }
 
   }
