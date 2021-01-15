@@ -3,25 +3,25 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 #map {
-    width: 70%;
-    height: 700px;
-    background-color: grey;
+  width: 80%;
+  height: 700px;
+  background-color: grey;
 }
 
 .minpaku_name_area {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 
 .minpaku_location_area {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
 
 .address_area {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
 }
