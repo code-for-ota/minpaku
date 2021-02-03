@@ -97,6 +97,7 @@
 .minpaku_name {
   display: flex;
   align-items: center;
+  font-size: 16px;
 }
 
 .minpaku_location_area {
@@ -111,12 +112,18 @@
 }
 
 .minpaku_basic_info {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.move_to_survey {
+  font-size: 16px;
+  margin-left: 8px;
 }
 
 .address_area {
   display: flex;
   flex-direction: column;
   justify-content: left;
+  font-size: 16px;
 }

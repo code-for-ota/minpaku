@@ -4,6 +4,12 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap"
 ></script>
 
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+  integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+  crossorigin="anonymous"
+></script>
+
 <div id="top-bar">
   <div id="logo">
     <img src="/assets/main/Logo00.png" width="200" height="200" />
@@ -69,11 +75,6 @@
 
       var html =
         `<div class="modal">
-                    <div class="move_to_survey">
-                      <a href="/survey?minpaku_id=` +
-        gon.minpaku_all[i].id +
-        `">アンケートに回答する</a>
-                    </div>
                     <div class="minpaku_name_area minpaku_basic_info">
                       <div class="home_icon_modal">
                         <img src="/assets/main/modal/home_icon_modal_1.png" widtth="40" height="40">
@@ -105,9 +106,19 @@
                       </div>
                     </div>
 
+                    <div class="move_to_survey minpaku_basic_info">
+                      <a href="/survey?minpaku_id=` +
+        gon.minpaku_all[i].id +
+        `">アンケートに回答する</a>
+                    </div>
+
                     <div class="aggregate_values" id="minpaku_id_` +
         gon.minpaku_all[i].id +
         `">
+                    <canvas id="chart_id_` +
+        gon.minpaku_all[i].id +
+        `" width="400" height="400"></canvas>
+
                     </div>
 
                   </div>`;
@@ -131,27 +142,55 @@
         var request = new XMLHttpRequest();
         request.open("GET", "/get_aggregate_values/" + id, true);
         request.onload = function() {
-          insert_target = document.getElementById("minpaku_id_" + id);
-          insert_target.innerHTML = radar_chart_html_builder(this.response);
+          build_radar_chart(this.response, id);
         };
         request.send();
       }
 
-      function radar_chart_html_builder(response) {
-        var html = "";
+      function build_radar_chart(response, id) {
+        var labels = [];
+        var values = [];
+
         var aggregate_values = JSON.parse(response);
+
         aggregate_values.forEach(aggregate_value => {
-          html +=
-            `
-            <div>` +
-            aggregate_value.survey_name +
-            ` : ` +
-            aggregate_value.average +
-            `
-            </div>
-            `;
+          labels.push(aggregate_value.survey_name);
+          values.push(aggregate_value.average * 10);
         });
-        return html;
+
+        var target = document.getElementById("chart_id_" + id);
+        var radarChart = new Chart(target, {
+          type: "radar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "近隣住民からの評価",
+                data: values,
+                backgroundColor: "rgba(96, 183, 220, 0.5)",
+                borderColor: "rgba(96, 183, 220, 0.5)"
+              }
+            ]
+          },
+          options: {
+            scale: {
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 10,
+                fontSize: 12
+              },
+              pointLabels: {
+                fontSize: 16
+              }
+            },
+            legend: {
+              display: true,
+              labels: {
+                fontSize: 16
+              }
+            }
+          }
+        });
       }
     }
   }
