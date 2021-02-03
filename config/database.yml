@@ -38,6 +38,6 @@ production:
   encoding: utf8
   database: <%= ENV['DATABASE_PROD_NAME'] %>
   pool: 5
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_PROD_USER'] %>
+  password: <%= ENV['DATABASE_PROD_PASS'] %>
+  host: <%= ENV['DATABASE_PROD_HOST'] %>
