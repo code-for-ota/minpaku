@@ -1,6 +1,6 @@
 class SurveyController < ApplicationController
     def index
-        @minpaku_id = params[:minpaku_id]
+        @minpaku = Minpaku.find(params[:minpaku_id])
         @survey_list = SurveyList.all
     end
 

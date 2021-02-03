@@ -2,10 +2,88 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+#top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#logo {
+  margin-left: 2%;
+}
+
+#main-title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#main-title-text {
+  color: #787979;
+  font-size: 60px;
+  white-space: nowrap;
+}
+
+#about-page-details {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  margin-right: 2%;
+}
+
+#about-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about_list_wrapper + div {
+  border-left: 2px solid #918f90;
+}
+
+.about_list {
+  font-size: 36px;
+  color: #787979;
+  background: linear-gradient(#ffffff, #fdfdfd);
+
+  padding-top: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+
+  border-radius: 4px;
+  border-right: 2px solid #b4b4b7;
+  border-bottom: 2px solid #b4b4b7;
+  border-top: 0.1px solid #f2f2f2;
+  border-left: 1px solid #f2f2f2;
+
+  margin-right: 12px;
+  margin-left: 12px;
+}
+
+#main {
+  display: flex;
+  justify-content: left;
+}
+
 #map {
   width: 80%;
-  height: 700px;
-  background-color: grey;
+  height: 900px;
+
+  margin-left: 2%;
+
+  border: 16px solid #918f91;
+  border-radius: 80px;
+}
+
+#adverts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.ad {
+  display: block;
+  background-color: #787979;
+  margin-left: 12px;
 }
 
 .minpaku_name_area {

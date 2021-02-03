@@ -1,32 +1,55 @@
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap">
-</script>
+<script
+  async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap"
+></script>
 
-<h1>Main Page</h1>
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>アンケートフォーム</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @minpaku_list.each do |minpaku| %>
-    <tr>
-      <td><%= minpaku.id %></td>
-      <td><%= link_to minpaku.name, survey_path(minpaku_id: minpaku.id) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="top-bar">
+  <div id="logo">
+    <img src="/assets/main/Logo00.png" width="200" height="200" />
+  </div>
 
-<div id="map"></div>
+  <div id="main-title-wrapper">
+    <div id="main-title-text">
+      大田区 民泊 MAP
+    </div>
+  </div>
 
+  <div id="about-page-details">
+    <div id="about-wrapper">
+      <div class="about_list_wrapper">
+        <div id="about" class="about_list">
+          レポートについて
+        </div>
+      </div>
+      <div class="about_list_wrapper">
+        <div id="privacy-policy-wrapper" class="about_list">
+          個人情報保護
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main">
+  <div id="map"></div>
+  <div id="adverts">
+    <div class="ad">
+      ad1
+    </div>
+    <div class="ad">
+      ad2
+    </div>
+  </div>
+</div>
 
 <script>
   function initMap() {
-    var latlng = new google.maps.LatLng(gon.minpaku_all[0].latitude, gon.minpaku_all[0].longtitude); //中心の緯度, 経度
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var latlng = new google.maps.LatLng(
+      gon.minpaku_all[0].latitude,
+      gon.minpaku_all[0].longtitude
+    ); //中心の緯度, 経度
+    var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 14, //ズームの調整
       center: latlng //上で設定した中心
     });
@@ -36,18 +59,28 @@
 
     for (var i = 0; i < gon.minpaku_all.length; i++) {
       markers[i] = new google.maps.Marker({
-        position: new google.maps.LatLng(gon.minpaku_all[i].latitude, gon.minpaku_all[i].longtitude),
+        position: new google.maps.LatLng(
+          gon.minpaku_all[i].latitude,
+          gon.minpaku_all[i].longtitude
+        ),
         map: map
       });
 
-      var html = `<div class="modal">
-
+      var html =
+        `<div class="modal">
+                    <div class="move_to_survey">
+                      <a href="/survey?minpaku_id=` +
+        gon.minpaku_all[i].id +
+        `">アンケートに回答する</a>
+                    </div>
                     <div class="minpaku_name_area">
                       <div class="home_icon_modal">
-                        <img src="/assets/main/modal/home_icon_modal.png" widtth="40" height="40">
+                        <img src="/assets/main/modal/home_icon_modal_1.png" widtth="40" height="40">
                       </div>
                       <div class="minpaku_name">
-                      ` + gon.minpaku_all[i].name + `
+                      ` +
+        gon.minpaku_all[i].name +
+        `
                       </div>
                     </div>
 
@@ -57,16 +90,23 @@
                       </div>
                       <div class = "address_area">
                         <div class ="postal_code">
-                        〒 ` + gon.minpaku_all[i].postal_code + `
+                        〒 ` +
+        gon.minpaku_all[i].postal_code +
+        `
                         </div>
                         <div class="address_full">
-                        ` + gon.minpaku_all[i].prefecture + gon.minpaku_all[i].city + gon.minpaku_all[i]
-        .address_details + `
+                        ` +
+        gon.minpaku_all[i].prefecture +
+        gon.minpaku_all[i].city +
+        gon.minpaku_all[i].address_details +
+        `
                         </div>
                       </div>
                     </div>
 
-                    <div class="aggregate_values" id="minpaku_id_` + gon.minpaku_all[i].id + `">
+                    <div class="aggregate_values" id="minpaku_id_` +
+        gon.minpaku_all[i].id +
+        `">
                     </div>
 
                   </div>`;
@@ -75,36 +115,43 @@
         content: html
       });
 
-      google.maps.event.addListener(markers[i], 'click', (function (i) {
-        return function () {
-          info_windows[i].open(map, markers[i]);
-          add_aggregate_values_dom(gon.minpaku_all[i].id)
-        };
-      })(i));
+      google.maps.event.addListener(
+        markers[i],
+        "click",
+        (function(i) {
+          return function() {
+            info_windows[i].open(map, markers[i]);
+            add_aggregate_values_dom(gon.minpaku_all[i].id);
+          };
+        })(i)
+      );
 
       function add_aggregate_values_dom(id) {
         var request = new XMLHttpRequest();
-        request.open('GET', "/get_aggregate_values/" + id, true);
-        request.onload = function () {
+        request.open("GET", "/get_aggregate_values/" + id, true);
+        request.onload = function() {
           insert_target = document.getElementById("minpaku_id_" + id);
           insert_target.innerHTML = radar_chart_html_builder(this.response);
-        }
-        request.send()
+        };
+        request.send();
       }
 
       function radar_chart_html_builder(response) {
         var html = "";
-        var aggregate_values = JSON.parse(response)
+        var aggregate_values = JSON.parse(response);
         aggregate_values.forEach(aggregate_value => {
-          html += `
+          html +=
+            `
             <div>` +
-            aggregate_value.survey_name + ` : ` + aggregate_value.average + `
+            aggregate_value.survey_name +
+            ` : ` +
+            aggregate_value.average +
+            `
             </div>
             `;
         });
         return html;
       }
     }
-
   }
 </script>
