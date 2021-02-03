@@ -80,13 +80,16 @@
         `">アンケートに回答する</a>
                     </div>
 
-                    <div class="aggregate_values" id="minpaku_id_` +
-        gon.minpaku_all[i].id +
-        `">
+                    <div class="aggregate_values">
                     <canvas id="chart_id_` +
         gon.minpaku_all[i].id +
         `" width="400" height="400"></canvas>
 
+                    </div>
+
+                    <div id="comment_id_"` +
+        gon.minpaku_all[i].id +
+        `>
                     </div>
 
                   </div>`;
@@ -102,6 +105,7 @@
           return function () {
             info_windows[i].open(map, markers[i]);
             add_aggregate_values_dom(gon.minpaku_all[i].id);
+            //add_comment_dom(gon.minpaku_all[i], id);
           };
         })(i)
       );
@@ -111,6 +115,17 @@
         request.open("GET", "/get_aggregate_values/" + id, true);
         request.onload = function () {
           build_radar_chart(this.response, id);
+        };
+        request.send();
+      }
+
+      function add_comment_dom(id) {
+        var request = new XMLHttpRequest();
+        request.open("GET", "/get_comments/" + id, true);
+        //要作成
+        request.onload = function () {
+          var comments_area = document.getElementById("comment_id_" + id);
+          comments_area.innerHTML = comments_html_builder(this.response, id);
         };
         request.send();
       }
@@ -158,6 +173,8 @@
           }
         });
       }
+
+      function comments_html_builder(response, id) {}
     }
   }
 </script>

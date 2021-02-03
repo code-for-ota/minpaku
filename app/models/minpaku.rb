@@ -29,4 +29,7 @@ class Minpaku < ApplicationRecord
       ")
       return result
   end
+
+  def get_comments
+  end
 end

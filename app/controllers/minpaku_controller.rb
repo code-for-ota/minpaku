@@ -11,4 +11,8 @@ class MinpakuController < ApplicationController
   def get_aggregate_values
     render :json => Minpaku.find(request[:id]).get_aggregate_values
   end
+
+  def get_comments
+    render :json => Minpaku.find(request[:id]).get_comments
+  end
 end
