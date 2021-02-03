@@ -1,41 +1,9 @@
-<script
-  async
-  defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap"
-></script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7B0ZTz7BZZLQ4E7cPD77Ns2mih7u3y5U&callback=initMap"></script>
 
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
   integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-  crossorigin="anonymous"
-></script>
-
-<div id="top-bar">
-  <div id="logo">
-    <img src="/assets/main/Logo00.png" width="200" height="200" />
-  </div>
-
-  <div id="main-title-wrapper">
-    <div id="main-title-text">
-      大田区 民泊 MAP
-    </div>
-  </div>
-
-  <div id="about-page-details">
-    <div id="about-wrapper">
-      <div class="about_list_wrapper">
-        <div id="about" class="about_list">
-          レポートについて
-        </div>
-      </div>
-      <div class="about_list_wrapper">
-        <div id="privacy-policy-wrapper" class="about_list">
-          個人情報保護
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  crossorigin="anonymous"></script>
 
 <div id="main">
   <div id="map"></div>
@@ -130,8 +98,8 @@
       google.maps.event.addListener(
         markers[i],
         "click",
-        (function(i) {
-          return function() {
+        (function (i) {
+          return function () {
             info_windows[i].open(map, markers[i]);
             add_aggregate_values_dom(gon.minpaku_all[i].id);
           };
@@ -141,7 +109,7 @@
       function add_aggregate_values_dom(id) {
         var request = new XMLHttpRequest();
         request.open("GET", "/get_aggregate_values/" + id, true);
-        request.onload = function() {
+        request.onload = function () {
           build_radar_chart(this.response, id);
         };
         request.send();
@@ -163,14 +131,12 @@
           type: "radar",
           data: {
             labels: labels,
-            datasets: [
-              {
-                label: "近隣住民からの評価",
-                data: values,
-                backgroundColor: "rgba(96, 183, 220, 0.5)",
-                borderColor: "rgba(96, 183, 220, 0.5)"
-              }
-            ]
+            datasets: [{
+              label: "近隣住民からの評価",
+              data: values,
+              backgroundColor: "rgba(96, 183, 220, 0.5)",
+              borderColor: "rgba(96, 183, 220, 0.5)"
+            }]
           },
           options: {
             scale: {
