@@ -1,3 +1,64 @@
 // Place all the styles related to the survey controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#questionaire {
+    margin-left: 4%;
+    white-space: nowrap;
+}
+
+#minpaku_name {
+    font-size: 40px;
+    margin-bottom: 48px;
+}
+
+#subtitle {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.table_header th {
+    font-size: 24px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+}
+
+.table_content th {
+    font-size: 24px;
+    padding-right: 32px;
+    padding-bottom: 16px;
+}
+
+input[type=radio] {
+    width: 32px;
+    height: 32px;
+}
+
+#free-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+#free-comment-label {
+    font-size: 24px;
+    margin-right: 24px;
+}
+
+#free-comment-textarea textarea {
+    width: 300%;
+    height: 100px;
+}
+
+#submit-button input[type=submit] {
+    width: 120px;
+    height: 50px;
+
+    margin-top: 32px;
+
+    font-size: 24px;
+    border-radius: 12px;
+    border: none;
+    background-color: #60C1DC;
+    color: #FFFFFF;
+}

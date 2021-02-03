@@ -1,33 +1,48 @@
-<%= link_to "Main Page", root_path %>
-<h1><%= @minpaku.name %></h1>
-<h2>アンケート項目</h2>
-<%= form_tag(survey_answer_path, method: :post) do %>
-<%= hidden_field_tag :minpaku_id, @minpaku.id %>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th>質問</th>
-        <th>あてはまる</th>
-        <th>あてはまらない</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @survey_list.each do |survey| %>
-      <tr>
-        <th><%= survey.id %></th>
-        <th><%= survey.survey_name %></th>
-        <th><%= radio_button_tag "survey_#{survey.id}", 1 %></th>
-        <th><%= radio_button_tag "survey_#{survey.id}", 0 %></th>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div id="questionaire">
+
+  <div id="minpaku_name">
+    <%= @minpaku.name %>についてのアンケート調査
+  </div>
+
+  <div id="subtitle">
+    アンケート項目
+  </div>
+
+  <%= form_tag(survey_answer_path, method: :post) do %>
+  <%= hidden_field_tag :minpaku_id, @minpaku.id %>
+  <div>
+    <table>
+      <thead>
+        <tr class="table_header">
+          <th>No.</th>
+          <th>質問</th>
+          <th>あてはまる</th>
+          <th>あてはまらない</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @survey_list.each do |survey| %>
+        <tr class="table_content">
+          <th><%= survey.id %></th>
+          <th><%= survey.survey_name %></th>
+          <th><%= radio_button_tag "survey_#{survey.id}", 1 %></th>
+          <th><%= radio_button_tag "survey_#{survey.id}", 0 %></th>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div id="free-comment">
+    <div id="free-comment-label">
+      自由記述欄
+    </div>
+    <div id="free-comment-textarea">
+      <%= text_area_tag "survey_comment" %>
+    </div>
+  </div>
+
+  <div id="submit-button">
+    <%= submit_tag "送信" %>
+  </div>
+  <% end %>
 </div>
-<div>
-  自由記述欄
-  <%= text_area_tag "survey_comment" %>
-</div>
-<%= submit_tag "送信" %>
-<% end %>

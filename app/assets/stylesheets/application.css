@@ -30,9 +30,28 @@
 }
 
 #main-title-text {
-    color: #787979;
     font-size: 60px;
     white-space: nowrap;
+}
+
+#main-title-text a {
+    text-decoration: none;
+}
+
+#main-title-text a:link {
+    color: #787979;
+}
+
+#main-title-text a:visited {
+    color: #787979;
+}
+
+#main-title-text a:hover {
+    color: #787979;
+}
+
+#main-title-text a:active {
+    color: #787979;
 }
 
 #about-page-details {
