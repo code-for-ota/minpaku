@@ -86,16 +86,33 @@
   margin-left: 12px;
 }
 
+//以下modal
+
 .minpaku_name_area {
   display: flex;
   flex-direction: row;
   justify-content: left;
 }
 
+.minpaku_name {
+  display: flex;
+  align-items: center;
+}
+
 .minpaku_location_area {
   display: flex;
   flex-direction: row;
   justify-content: left;
+}
+
+.address_icon_modal {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.minpaku_basic_info {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .address_area {
