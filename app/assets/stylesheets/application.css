@@ -54,6 +54,26 @@
     color: #787979;
 }
 
+#about a {
+    text-decoration: none;
+}
+
+#about a:link {
+    color: #787979;
+}
+
+#about a:visited {
+    color: #787979;
+}
+
+#about a:hover {
+    color: #787979;
+}
+
+#about a:active {
+    color: #787979;
+}
+
 #about-page-details {
     display: flex;
     white-space: nowrap;
