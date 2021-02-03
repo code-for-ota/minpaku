@@ -74,6 +74,26 @@
     color: #787979;
 }
 
+#privacy-policy-wrapper a {
+    text-decoration: none;
+}
+
+#privacy-policy-wrapper a:link {
+    color: #787979;
+}
+
+#privacy-policy-wrapper a:visited {
+    color: #787979;
+}
+
+#privacy-policy-wrapper a:hover {
+    color: #787979;
+}
+
+#privacy-policy-wrapper a:active {
+    color: #787979;
+}
+
 #about-page-details {
     display: flex;
     white-space: nowrap;
