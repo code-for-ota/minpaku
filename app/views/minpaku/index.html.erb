@@ -21,12 +21,14 @@
   function initMap() {
     var latlng = new google.maps.LatLng(
       gon.minpaku_all[0].latitude,
-      gon.minpaku_all[0].longtitude
+      gon.minpaku_all[0].longitude
     ); //中心の緯度, 経度
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 14, //ズームの調整
       center: latlng //上で設定した中心
     });
+
+    console.log(gon.minpaku_all)
 
     var markers = [];
     var info_windows = [];
@@ -35,7 +37,7 @@
       markers[i] = new google.maps.Marker({
         position: new google.maps.LatLng(
           gon.minpaku_all[i].latitude,
-          gon.minpaku_all[i].longtitude
+          gon.minpaku_all[i].longitude
         ),
         map: map,
         icon: "/assets/main/home_icon_main_1.png"
