@@ -28,8 +28,6 @@
       center: latlng //上で設定した中心
     });
 
-    console.log(gon.minpaku_all)
-
     var markers = [];
     var info_windows = [];
 
@@ -43,6 +41,8 @@
         icon: "/assets/main/home_icon_main_1.png"
       });
 
+      var minpaku_name = gon.minpaku_all[i].name ? gon.minpaku_all[i].name : "無名の民泊";
+
       var html =
         `<div class="modal">
                     <div class="minpaku_name_area minpaku_basic_info">
@@ -51,7 +51,7 @@
                       </div>
                       <div class="minpaku_name">
                       ` +
-        gon.minpaku_all[i].name +
+        minpaku_name +
         `
                       </div>
                     </div>
