@@ -5,6 +5,8 @@ class Minpaku < ApplicationRecord
   has_many :survey_comments, through: :surveys
   has_many :survey_values, through: :surveys
 
+  self.inheritance_column = :_type_disabled
+
   def set_aggregate_values
     self.aggregate_values = self.get_aggregate_values
   end
