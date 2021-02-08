@@ -21,7 +21,7 @@ SurveyList.create(survey_list)
 
 minpaku_list = [{
   name: '民泊A',
-  longtitude: '139.73926908273415',
+  longitude: '139.73926908273415',
   latitude: '35.6293681',
   postal_code: '108-8282',
   prefecture: '東京都',
@@ -29,7 +29,7 @@ minpaku_list = [{
   address_details: '高輪３丁目２６−２７'
 },{
   name: '民泊B',
-  longtitude: '139.6655074',
+  longitude: '139.6655074',
   latitude: '35.6257156',
   postal_code: '108-8282',
   prefecture: '東京都',
