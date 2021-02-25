@@ -10,8 +10,8 @@
 
 survey_list = [
   { survey_name: '清潔さ・ゴミ管理' },
-  { survey_name: '騒音' },
-  { survey_name: '管理者' },
+  { survey_name: '騒音対策' },
+  { survey_name: '管理者の対応' },
   { survey_name: '防災' },
   { survey_name: '防犯' }
 ]
