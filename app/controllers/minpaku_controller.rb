@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MinpakuController < ApplicationController
-  #after_action :allow_iframe, only: [:index, :get_aggregate_values, :get_comments]
+  after_action :allow_iframe, only: [:index, :get_aggregate_values, :get_comments]
 
   def index
     @minpaku_list = Minpaku.all
