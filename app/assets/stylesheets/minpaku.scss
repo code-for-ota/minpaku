@@ -32,6 +32,20 @@
 
 //以下modal
 
+.close_button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 4px;
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+
+.close_text {
+  margin-left: 12px;
+  font-size: 16px;
+}
+
 .minpaku_name_area {
   display: flex;
   flex-direction: row;
@@ -62,6 +76,7 @@
 
 .move_to_survey {
   font-size: 16px;
+  margin-top: 24px;
   margin-left: 8px;
 }
 

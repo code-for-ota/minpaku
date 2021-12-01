@@ -18,6 +18,8 @@
 </div>
 
 <script>
+  var isModalDisplay = false;
+
   function initMap() {
     var latlng = new google.maps.LatLng(
       gon.minpaku_all[0].latitude,
@@ -44,7 +46,15 @@
       var minpaku_name = gon.minpaku_all[i].name ? gon.minpaku_all[i].name : "無名の民泊";
 
       var html =
-        `<div class="modal">
+        `<div class="modal" id="modal_` + gon.minpaku_all[i].id + `">
+                    <div class="close_button" id="close_button_` + gon.minpaku_all[i].id + `">
+                      <div class="close_icon_modal">
+                        <img src="/assets/main/modal/x.png" width="20" height="20">
+                      </div>
+                      <div class="close_text" onclick=closeInfoWindow(` + gon.minpaku_all[i].id + `)>
+                        ウィンドウを閉じる
+                      </div>
+                    </div>
                     <div class="minpaku_name_area minpaku_basic_info">
                       <div class="home_icon_modal">
                         <img src="/assets/main/modal/home_icon_modal_1.png" widtth="40" height="40">
@@ -107,10 +117,24 @@
           return function () {
             info_windows[i].open(map, markers[i]);
             add_aggregate_values_dom(gon.minpaku_all[i].id);
+            //add_close_event_click_other_area(info_windows[i], gon.minpaku_all[i].id);
+            //isModalDisplay = true;
             //add_comment_dom(gon.minpaku_all[i], id);
           };
         })(i)
       );
+
+      /*
+      モーダルの外をクリックした時にモーダルを閉じる
+            function add_close_event_click_other_area(info_window, i) {
+              document.addEventListener("click", function (e) {
+                if (isModalDisplay && !e.target.closest("#modal_" + i)) {
+                  info_window.close();
+                  isModalDisplay = false;
+                }
+              })
+            }
+      */
 
       function add_aggregate_values_dom(id) {
         var request = new XMLHttpRequest();
